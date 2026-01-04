@@ -10,8 +10,9 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
-app.use("/api/notes", noteRoutes);
+app.use(express.json());
 
+app.use("/api/notes", noteRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
