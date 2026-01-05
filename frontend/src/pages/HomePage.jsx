@@ -8,7 +8,7 @@ import NoteCard from '../components/NoteCard.jsx';
 
 function HomePage () {
     const [ isRateLimited, setIsRateLimited ] = useState(false);
-    const [ notes, setNotes ] = useState({});
+    const [ notes, setNotes ] = useState([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -16,22 +16,18 @@ function HomePage () {
             try{
                 const response = await axios.get("http://localhost:3000/api/notes");
                 setNotes(response.data);
-                console.log(response.data);
                 setIsRateLimited(false);
             } catch (e) {
-                console.log(e)
-                console.log(e.message)
-                if(e.response.status == 429){
+                if(e.response.status === 429){
                     setIsRateLimited(true);
                     toast.error("Request Limit Exceeded.");
                 } else {
-                    console.log("1Failed to load notes.");
                     toast.error("Failed to load notes.");
                 }
             } finally {
                 setLoading(false);
             }
-        }
+        };
 
         fetchNotes();
     }, []);
@@ -40,19 +36,27 @@ function HomePage () {
             <NavBar />
             {isRateLimited && <RateLimitReached />}
 
-            <div>
-                {loading && <div>Loading Notes...</div>}
+            {!isRateLimited && (
+                <div className="p-10">
+                    {loading && <div>Loading Notes...</div>}
+                    
+                    {!loading && notes.length === 0 && (
+                        <div className="text-center text-gray-500">
+                        No notes found. Create your first note ✍️
+                        </div>
+                    )}
 
-                {notes.length > 0 && !isRateLimited && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {notes.map(note => (
-                            <NoteCard key={note._id} note={note}/>
-                        ))}
-                    </div>
-                )}
-            </div>
+                    {!loading && notes.length > 0 && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {notes.map(note => (
+                                <NoteCard key={note._id} note={note}/>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
         </>
-    )
+    );
 }
 
 export default HomePage;
