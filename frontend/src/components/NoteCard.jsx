@@ -5,11 +5,8 @@ import axios from 'axios';
 
 function NoteCard({note, setNotes}) {
 
-    const handleDelete = async (id) => {
-        console.log(id);
-
+    const handleDelete = async (eve, id) => {
         if(!window.confirm("Are you sure you want to delete this note ?")) return;
-
         try{
             await axios.delete(`http://localhost:3000/api/notes/${id}`);
             setNotes((prev) => prev.filter(note => note._id !== id));
@@ -36,8 +33,18 @@ function NoteCard({note, setNotes}) {
         </Link>
 
         <div className="absolute top-3 right-3 flex gap-2">
-            <PenSquareIcon className="p-1.5 rounded-md hover:bg-gray-100 text-gray-600" />
-            <Trash2Icon className="p-1.5 rounded-md hover:bg-red-100 text-red-600" onClick={() => handleDelete(note._id)} />
+            <Link
+                to={`/note/${note._id}`}
+                onClick={(e) => e.stopPropagation()}
+                className="p-1.5 rounded-md hover:bg-gray-100 text-gray-600"
+            > <PenSquareIcon size={18} />
+            </Link>
+            <button
+                onClick={(e) => handleDelete(e, note._id)}
+                className="p-1.5 rounded-md hover:bg-red-100 text-red-600 cursor-pointer"
+            >
+                <Trash2Icon size={18} />
+            </button>
         </div>
     </div>
   );
