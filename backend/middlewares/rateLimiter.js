@@ -1,8 +1,8 @@
 import rateLimit from 'express-rate-limit';
 
 const notesRateLimiter = rateLimit({
-  windowMs: 15 * 60 * 100, // 15 minutes
-  max: 3, // max 100 requests per IP per window
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // max 100 requests per IP per window
   standardHeaders: true, // Return rate limit info in headers
   legacyHeaders: false, // Disable X-RateLimit-* headers
   message: {
