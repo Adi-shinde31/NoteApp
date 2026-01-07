@@ -1,0 +1,22 @@
+{
+  "name": "note-app",
+  "version": "1.0.0",
+  "description": "A full-stack **Note Taking Application** built using the **MERN stack** that allows users to create, read, update, and delete notes in a clean and intuitive interface. The project demonstrates proper separation of frontend and backend concerns, RESTful APIs, and MongoDB integration.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adi-shinde31/NoteApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Adi-shinde31/NoteApp/issues"
+  },
+  "homepage": "https://github.com/Adi-shinde31/NoteApp#readme"
+}

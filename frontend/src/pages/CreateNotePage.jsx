@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
 import { Link, useNavigate } from "react-router";
 import { ArrowLeftIcon } from "lucide-react";
+
+import api from '../../lib/axios';
 
 function CreateNotePage () {
     const [ title, setTitle ] = useState('');
@@ -21,7 +22,7 @@ function CreateNotePage () {
         setLoading(true);
         
         try{
-            await axios.post("http://localhost:3000/api/notes", {title, content});
+            await api.post("/notes", {title, content});
             toast.success("Note Created Successfully");
             navigate('/');
         } catch (e) {
