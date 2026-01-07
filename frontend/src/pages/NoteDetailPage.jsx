@@ -34,7 +34,7 @@ function NoteDetailPage () {
         if(!window.confirm("Are you sure you want to delete this note ?")) return;
 
         try{
-            await api.get(`/notes/${id}`);
+            await api.delete(`/notes/${id}`);
             toast.success("Note Deleted Successfully!");
             navigate('/');
         } catch (e) {
@@ -52,7 +52,7 @@ function NoteDetailPage () {
         setSaving(true);
 
         try{
-            await api.get(`/notes/${id}`, note);
+            await api.put(`/notes/${id}`, note);
             toast.success("Note Updated Successfully!");
             navigate('/');
         } catch (e) {
