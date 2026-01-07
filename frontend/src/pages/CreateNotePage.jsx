@@ -63,7 +63,7 @@ function CreateNotePage () {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Note title"
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500"
                         required
                     />
 
@@ -74,7 +74,7 @@ function CreateNotePage () {
                         onChange={(e) => setContent(e.target.value)}
                         placeholder="Write your note here..."
                         rows={6}
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-red-500"
                         required
                     />
 
@@ -82,7 +82,7 @@ function CreateNotePage () {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                        className="w-full text-white py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                         >
                         {loading ? "Creating..." : "Create Note"}
                     </button>

@@ -90,7 +90,7 @@ function NoteDetailPage () {
                     value={note.title || ""} 
                     onChange={(e) => setNote({...note, title: e.target.value})} 
                     placeholder="Note title"
-                    className="w-full text-lg font-semibold border-b border-gray-300 pb-2 mb-4 focus:outline-none focus:border-blue-500"
+                    className="w-full text-lg font-semibold border-b border-gray-300 pb-2 mb-4 focus:outline-none focus:border-red-500"
                     />
 
                 <textarea 
@@ -107,7 +107,7 @@ function NoteDetailPage () {
                     <button 
                         disabled={saving} 
                         onClick={handleSave}
-                        className="cursor-pointer bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50"
+                        className="cursor-pointer text-white px-5 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-700 transition disabled:opacity-50"
                         >
                         {saving ? "Saving...": "Save Changes" }
                     </button>
